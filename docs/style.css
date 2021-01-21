@@ -1,0 +1,70 @@
+body {
+    margin:0px; 
+    font-family: 'Baloo Chettan 2', cursive;
+}
+h1, h2 {
+    text-align: center;
+}
+#container {
+    margin-top: 5vh;
+    margin-left:auto; 
+    margin-right:auto; 
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+#page-content-list {
+    display:inline;
+    list-style: none;
+}
+#page-content-list li {
+    display:inline; 
+    height:40px;
+}
+#current-page {
+    border-left: 2px solid orangered;
+    color:orange;
+    background-color: rgb(238, 238, 255);
+}
+#page-content-list:hover li #current-page {
+    background-color: inherit;
+    border-left: inherit;
+    color:inherit;
+}
+
+#side-content-header {
+    text-align: right;
+    font-weight: 900;
+}
+#side-content {
+    margin-right:30px; 
+    position: sticky;
+    top: 0;
+    height:100vh;
+}
+.page-content-link {
+    border-left: 2px solid  transparent;
+    display:block; 
+    height:40px;
+    text-align: center;
+    color:black;
+    text-decoration: none;
+    transition: 0.1s;
+    overflow: hidden;
+    white-space: nowrap;
+    padding-right: 10px;
+    padding-left: 10px; 
+    line-height: 40px;
+    text-align: right;
+}
+
+.page-content-link:hover {
+    color: orange !important;
+    text-decoration: orangered underline !important;
+    border-left: 2px solid orangered !important;
+    background-color: rgb(238, 238, 255) !important;
+}
+
+#top-hr {
+    width:1000px; 
+}

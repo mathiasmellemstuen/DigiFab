@@ -72,3 +72,10 @@ main {
     width: 590px; 
     overflow-wrap:break-word; 
 }
+footer {
+    position:fixed;
+    bottom:0px;
+    left:0px; 
+    right:0px; 
+    text-align:center; 
+}

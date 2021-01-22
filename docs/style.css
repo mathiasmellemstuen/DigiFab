@@ -68,3 +68,7 @@ h1, h2 {
 #top-hr {
     width:1000px; 
 }
+main {
+    width: 590px; 
+    overflow-wrap:break-word; 
+}

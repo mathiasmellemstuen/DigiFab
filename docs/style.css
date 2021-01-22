@@ -78,5 +78,12 @@ footer {
     left:0px; 
     right:0px; 
     text-align:center; 
-    background-color:white; 
+    background-color: white;
+}
+footer a {
+    color:orangered; 
+    text-decoration: orangered underline;
+}
+footer a:hover {
+    color:orange; 
 }

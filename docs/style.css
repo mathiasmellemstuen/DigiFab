@@ -80,10 +80,37 @@ footer {
     text-align:center; 
     background-color: white;
 }
-footer a {
+a {
     color:orangered; 
     text-decoration: orangered underline;
 }
-footer a:hover {
+a:hover {
     color:orange; 
+}
+
+img {
+    width:100%;
+}
+figure {
+    margin: 0;
+}
+figcaption {
+    font-style:italic;
+}
+table {
+  border-collapse: collapse;
+  width:100%; 
+}
+th {
+    border: 1px solid black; 
+}
+tr:nth-child(even) {
+    background: rgb(241, 241, 241)
+}
+.inline-code {
+    display:inline-block;
+}
+#bottom-behind-footer {
+    width:1px; 
+    height:100px; 
 }

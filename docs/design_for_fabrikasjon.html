@@ -1,1 +1,252 @@
-test
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DigiFab - Introduksjon</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Baloo+Chettan+2&display=swap" rel="stylesheet"> 
+        
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/default.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+    </head>
+    <body>
+        <h1>DigiFab</h1>
+        <h2>Design for fabrikasjon</h2>
+        <hr id="top-hr">
+        <div id="container">
+            <div id="side-content">
+                <h4 id="side-content-header">Innhold</h4>
+                <hr>
+                <ul id="page-content-list">
+                    <li><a class="page-content-link" href="index.html">Introduksjon</a></li>
+                    <li><a class="page-content-link" href="design_for_fabrikasjon.html" id="current-page">Design for fabrikasjon</a></li>
+                    <li><a class="page-content-link" href="template.html">Elektronikk og Arduino</a></li>
+                    <li><a class="page-content-link" href="template.html">Raspberry Pi</a></li>
+                    <li><a class="page-content-link" href="template.html">3D printing</a></li>
+                    <li><a class="page-content-link" href="template.html">ESP32</a></li>
+                    <li><a class="page-content-link" href="template.html">VinylKutting</a></li>
+                    <li><a class="page-content-link" href="template.html">Avansert elektronikk</a></li>
+                    <li><a class="page-content-link" href="template.html">Laserkutting</a></li>
+                    <li><a class="page-content-link" href="template.html">CNC maskinering</a></li>
+                    <li><a class="page-content-link" href="template.html">Eksamensprosjekt</a></li>
+                </ul>
+            </div>
+            <main>
+                <h3>Autodesk Fusion 360</h3>
+                <hr>
+                <p>I denne oppgaven skulle jeg designe noe både i Fusion360 og i IncScape. I Fusion 360 så valgte jeg å designe et mobildeksel til en OnePlus 5 mobil. Her er et bilde av sluttresultatet i denne oppgaven:</p>
+                <figure>
+                    <img src="images/design_for_fabrikasjon/boks_ferdig.PNG">
+                    <figcaption>Bilde av sluttresultatet i denne oppgaven.</figcaption>
+                </figure>
+                <p>Fusion360 filen til dette prosjektet finnes <a href="https://github.com/mathiasmellemstuen/DigiFab/Design for Fabrikasjon/">her</a>.</p>
+                <p>Jeg brukte parametere i Fusion360 for å lage mobildekselet. Dette vil gjøre det mye lettere å forandre på designet og størrelsene, noe som er nyttig i mitt tilfelle hvor mange av målene er tatt med en linjal og det mest sannsynlig finnes noe feil. Liste over parametere:</p>
+                <table>
+                    <tr>
+                        <th>Navn</th>
+                        <th>Enhet</th>
+                        <th>Verdi</th>
+                    </tr>
+                    <tr>
+                        <th>phone_height</th>
+                        <th>mm</th>
+                        <th>152.2</th>
+                    </tr>
+                    <tr>
+                        <th>phone_width</th>
+                        <th>mm</th>
+                        <th>74.1</th>
+                    </tr>
+                    <tr>
+                        <th>phone_depth</th>
+                        <th>mm</th>
+                        <th>7.25</th>
+                    </tr>
+                    <tr>
+                        <th>case_depth</th>
+                        <th>mm</th>
+                        <th>2.5</th>
+                    </tr>
+                    <tr>
+                        <th>fillet_amount</th>
+                        <th>mm</th>
+                        <th>2</th>
+                    </tr>
+                    <tr>
+                        <th>camera_margin_top</th>
+                        <th>mm</th>
+                        <th>8</th>
+                    </tr>
+                    <tr>
+                        <th>camera_margin_left</th>
+                        <th>mm</th>
+                        <th>8</th>
+                    </tr>
+                    <tr>
+                        <th>camera_height</th>
+                        <th>mm</th>
+                        <th>15</th>
+                    </tr>
+                    <tr>
+                        <th>camera_width</th>
+                        <th>mm</th>
+                        <th>phone_width * 0.5</th>
+                    </tr>
+                    <tr>
+                        <th>usbc_width</th>
+                        <th>mm</th>
+                        <th>8.34</th>
+                    </tr>
+                    <tr>
+                        <th>usbc_height</th>
+                        <th>mm</th>
+                        <th>2.56</th>
+                    </tr>
+                    <tr>
+                        <th>usbc_fillet</th>
+                        <th>mm</th>
+                        <th>0.3</th>
+                    </tr>
+                    <tr>
+                        <th>aux_diameter</th>
+                        <th>mm</th>
+                        <th>5</th>
+                    </tr>
+                    <tr>
+                        <th>aux_margin_right</th>
+                        <th>mm</th>
+                        <th>8</th>
+                    </tr>
+                    <tr>
+                        <th>sidebutton_width</th>
+                        <th>mm</th>
+                        <th>10</th>
+                    </tr>
+                    <tr>
+                        <th>sidebutton_height</th>
+                        <th>mm</th>
+                        <th>2</th>
+                    </tr>
+                    <tr>
+                        <th>sidebutton_margin_right</th>
+                        <th>mm</th>
+                        <th>phone_height / 3</th>
+                    </tr>
+                    <tr>
+                        <th>volume_width</th>
+                        <th>mm</th>
+                        <th>25</th>
+                    </tr>
+                    <tr>
+                        <th>volume_height</th>
+                        <th>mm</th>
+                        <th>2</th>
+                    </tr>
+                    <tr>
+                        <th>sliderbutton_width</th>
+                        <th>mm</th>
+                        <th>15</th>
+                    </tr>
+                    <tr>
+                        <th>sliderbutton_height</th>
+                        <th>mm</th>
+                        <th>2</th>
+                    </tr>
+                    <tr>
+                        <th>sliderbutton_margin_left</th>
+                        <th>mm</th>
+                        <th>17</th>
+                    </tr>
+                    <tr>
+                        <th>volumebutton_distance_to_sliderbutton</th>
+                        <th>mm</th>
+                        <th>18</th>
+                    </tr>
+                    <tr>
+                        <th>button_fillet</th>
+                        <th>mm</th>
+                        <th>0.4</th>
+                    </tr>
+                </table>
+                <p>Slik gikk jeg frem for å designe mobildekselet:</p>
+                <p><strong>1. </strong> Jeg lagde en sketch som representerer bunnen av dekselet. Størrelsen av rektangelet blir <span style="font-style:italic;">(phone_height + case_depth) * (phone_width + case_depth)</span>. Bilde av sketch:</p>
+                <figure>
+                    <img src="images/design_for_fabrikasjon/sketch_bunn.PNG">
+                    <figcaption>Sketch av bunnen til dekselet.</figcaption>
+                </figure>
+                <p>Ekstruderte denne sketchen med <span style="font-style: italic;">case_depth</span></p>
+                <p><strong>2. </strong> Lagde en ny sketch på toppen av figuren. Dette er en firkant hvor jeg har brukt dimentions tool på alle kantene med <span style="font-style: italic;">case_depth</span> parameteren. Dette er for å lage kantene. Bilde av sketchen:</p>
+                <figure>
+                    <img src="images/design_for_fabrikasjon/sketch_kanter.PNG">
+                    <figcaption>Sketch av kantene til dekselet.</figcaption>
+                </figure>
+                <p>Etter dette ekstruderte jeg kantene slik at jeg fikk veggene i dekselet. Jeg brukte <span style="font-style: italic;">phone_depth</span> parameteren til dette. Jeg rundet også av hjørnene med fillet tool. Her brukte jeg <span style="font-style: italic;">fillet_amount</span> parameteren.</p>
+                <figure>
+                    <img src="images/design_for_fabrikasjon/boks_fillet.PNG">
+                    <figcaption>Resultatet til nå.</figcaption>
+                </figure>
+                <p><strong>3.</strong> Jeg lagde et hull til kamera. Her brukte jeg disse parameterene: <i>camera_margin_top, camera_margin_left, camera_height, camera_width</i>. Resultatet av dette ble denne sketchen:</p>
+                <figure>
+                    <img src="images/design_for_fabrikasjon/sketch_kamera.PNG">
+                    <figcaption>Sketch av kamerahull.</figcaption>
+                </figure>
+                <p>Etter å ekstrudere og avrunde kantene med fillet tool ser modellen slik ut:</p>
+                <figure>
+                    <img src="images/design_for_fabrikasjon/boks_kamera.PNG">
+                    <figcaption>Bilde av dekselet med hull til kamera.</figcaption>
+                </figure>
+                <p><strong>4. </strong> Det neste jeg gjorde var å lage en sketch til hullet til USB-C tilkoblingen. Her brukte jeg <i>usbc_width</i> og <i>usbc_height</i> parameteren for å lage rektangulet. Deretter brukte jeg dimentions på topp kanten med <i>( phone_depth / 2 ) - ( usbc_height / 2 )</i> for å definere avstanden fra topp-kanten og <i>( phone_width / 2 ) - ( usbc_width / 2 )</i> for å definere avstanden fra venstre-kanten. Dette ble resulatet:</p>
+                <figure>
+                    <img src="images/design_for_fabrikasjon/usbc_sketch.PNG">
+                    <figcaption>Sketch av USB-C hullet.</figcaption>
+                </figure>
+                <p>Jeg lagde en ny sketch på samme overflate som var til AUX-tilkoblingen. Her brukte jeg <i>aux_diameter</i> for diameteren i sirkelen. Jeg definerte dimention til top-kanten med <i>phone_depth / 2</i> og med høyrekanten: <i>aux_margin_right + ( aux_diameter / 2 )</i>. Resultatet av dette:</p>
+                <figure>
+                    <img src="images/design_for_fabrikasjon/aux_sketch.PNG">
+                    <figcaption>Sketch av AUX hullet.</figcaption>
+                </figure>
+                <p>Resultatet av dekselet ser nå ut som dette etter å ha ekstrudert begge sketchene: </p>
+                <figure>
+                    <img src="images/design_for_fabrikasjon/boks_aux_usbc.PNG">
+                    <figcaption>Modellen med USB-C og AUX hullene.</figcaption>
+                </figure> 
+                <p><strong>5. </strong>Her lager jeg en ny sketch til på/av knappen på mobilen. Denne ligger på høyresiden av mobilen. Her brukte jeg <i>sidebutton_width</i> og <i>sidebutton_height</i> som lengde og bredde i rektangelet i sketchen. Deretter brukte jeg <i>sidebutton_margin_right</i> i dimention tool på høyresiden av rektangelet og avstanden til toppen definerte jeg i dimention tool med <i>( phone_depth / 2 ) - ( sidebutton_height / 2 )</i>. Slik ble resulatet av dette: </p>
+                <figure>
+                    <img src="images/design_for_fabrikasjon/sidebutton_sketch.PNG">
+                    <figcaption>Sketch av på/av knapp.</figcaption>
+                </figure>
+                <p>På andre siden av mobilen er det en bryter med tre hakk. Her lager jeg et hull til sporet av bryteren. Til rektangelet i sketchen brukte jeg <i>sliderbutton_width</i> og <i>sliderbutton_height</i>. For avstanden mellom rektangelet og venstre-kanten brukte jeg <i>sliderbutton_margin_left</i> i dimention tool. Avstanden fra rektangelet og topp-kanten brukte jeg <i>( phone_depth / 2 ) - ( sliderbutton_height / 2 )</i> i dimention tool. Bilde av sketchen:</p>
+                <figure>
+                    <img src="images/design_for_fabrikasjon/sliderbutton_sketch.PNG">
+                    <figcaption>Sketch av bryteren på venstre-siden.</figcaption>
+                </figure>
+                <p>Ved siden av bryteren ligger volumknappen. Her lager jeg en ny sketch igjen med et rektangel. Størrelsen til rektangelet definerer jeg med <i>volume_width</i> og <i>volume_height</i>. Avstanden fra bryteren og volumknappen legger jeg inn med dimention tool med <i>volumebutton_distance_to_sliderbutton</i>. Avstanden mellom volumknappen og topp-kanten legger jeg inn med dimention tool med <i>( phone_depth / 2 ) - ( volume_height / 2 )</i> paramteren. Sketch av volumknappen: </p>
+                <figure>
+                    <img src="images/design_for_fabrikasjon/volume_sketch.PNG">
+                    <figcaption>Sketch av volumeknapp på venstre-siden.</figcaption>
+                </figure>
+                <p>Tilslutt så ekstruderer jeg alle sketchene og legger på fillet på kantene med <i>button_fillet</i>. Dette blir det endelige resultatet:</p>
+                <figure>
+                    <img src="images/design_for_fabrikasjon/boks_ferdig.PNG">
+                    <figcaption>Deksel modellen.</figcaption>
+                </figure>
+                <h3>IncScape</h3>
+                <hr>
+                <p>Siden jeg lagde et Oneplus mobildeksel i den første delen av oppgaven så tenkte jeg at jeg like så godt kunne lage Oneplus logoen her. Jeg fant dette bildet på nettet og brukte det som inspirasjon: </p>
+                <figure>
+                    <img src="images/design_for_fabrikasjon/onplus-real-logo.jpg">
+                    <figcaption>Den ekte OnePlus logoen som jeg brukte som inspirasjon.</figcaption>
+                </figure>
+                <p>Dette er logoen som jeg lagde i IncScape</p>
+                <figure>
+                    <img src="https://github.com/mathiasmellemstuen/DigiFab/Design for Fabrikasjon/Oneplus logo Incscape.svg">
+                    <figcaption>Logoen som jeg lagde i Incscape.</figcaption>
+                </figure>
+                <div id="bottom-behind-footer"></div>
+            </main>
+        </div>
+        <footer><p>Mathias Mellemstuen (<a href="mailto:mathias.mellemstuen@hiof.no">mathias.mellemstuen@hiof.no</a>)</p></footer>
+    </body>
+</html>

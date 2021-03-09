@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DigiFab - Introduksjon</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Baloo+Chettan+2&display=swap" rel="stylesheet"> 
+        
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/default.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+    </head>
+    <body>
+        <h1>DigiFab</h1>
+        <h2>Elektronikk og Arduino</h2>
+        <hr id="top-hr">
+        <div id="container">
+            <div id="side-content">
+                <h4 id="side-content-header">Innhold</h4>
+                <hr>
+                <ul id="page-content-list">
+                    <li><a class="page-content-link" href="index.html">Introduksjon</a></li>
+                    <li><a class="page-content-link" href="design_for_fabrikasjon.html">Design for fabrikasjon</a></li>
+                    <li><a class="page-content-link" id="current-page" href="elektronikk_og_arduino.html">Elektronikk og Arduino</a></li>
+                    <li><a class="page-content-link" href="template.html">Raspberry Pi</a></li>
+                    <li><a class="page-content-link" href="template.html">3D printing</a></li>
+                    <li><a class="page-content-link" href="template.html">ESP32</a></li>
+                    <li><a class="page-content-link" href="template.html">VinylKutting</a></li>
+                    <li><a class="page-content-link" href="template.html">Avansert elektronikk</a></li>
+                    <li><a class="page-content-link" href="template.html">Laserkutting</a></li>
+                    <li><a class="page-content-link" href="template.html">CNC maskinering</a></li>
+                    <li><a class="page-content-link" href="template.html">Eksamensprosjekt</a></li>
+                </ul>
+            </div>
+            <main>
+                <h3>Digital hourglass</h3>
+                <hr>
+                <p>I denne oppgaven valgte jeg å gjøre Digital hourglass (oppgave 8) fra Arduino prosjektboken. Jeg bestemte meg for å legge på noe ekstra på oppgaven. Jeg la blant annet inn en reset knapp som resatt tiden og LED lysene.Jeg la også inn at LED lyset blinker når "tiden" står på lampen.</p>
+                <h3>Oppkobling</h3>
+                <hr>
+                <figure>
+                    <img src="images/elektronikk_og_arduino/circuit_sketch.png">
+                    <figcaption>Illustrasjon av hele oppkoblingen.</figcaption>
+                </figure>
+                <p>Bildet over er det en illustrasjon av hele oppkoblingen. Denne har jeg satt opp i <a href="https://www.tinkercad.com">Autodesk Tinkercad</a>. Jeg fikk høre om Tinkercad og fikk lyst til å bruke det til å tegne oppkoblingen min i denne oppgaven. Man kan også bruke Tinkercad til å simulere kode på Arduino-enheten og simulere kretsen.</p>
+                <p><b>Utstyrsliste</b></p>
+                <table>
+                    <tr>
+                        <th>Komponent / del</th>
+                        <th>Antall</th>
+                    </tr>
+                    <tr>
+                        <th>Arduino UNO</th>
+                        <th>1</th>
+                    </tr>
+                    <tr>
+                        <th>Breadboard</th>
+                        <th>1</th>
+                    </tr>
+                    <tr>
+                        <th>Ledning</th>
+                        <th>12</th>
+                    </tr>
+                    <tr>
+                        <th>220Ω motstand</th>
+                        <th>6</th>
+                    </tr>
+                    <tr>
+                        <th>10KΩ motstand</th>
+                        <th>2</th>
+                    </tr>
+                    <tr>
+                        <th>Tilt sensor</th>
+                        <th>1</th>
+                    </tr>
+                    <tr>
+                        <th>Knapp</th>
+                        <th>1</th>
+                    </tr>
+                </table>
+                <p><b>Oppkoblingen steg for steg:</b></p>
+                <ol>
+                    <li>Startet med å legge til alle LED lysene. Koblet også 5V og Ground til breadboardet.
+                    <figure>
+                        <img style="width:50%;" src="images/elektronikk_og_arduino/progress_1.jpg">
+                        <figcaption>Steg 1. i oppkobling</figcaption>
+                    </figure>
+                    </li>
+                    <li>Legger til motstandene til LED-lysene (220Ω motstander). Disse motstandene kobler katoden på LED-lyset til ground.
+                        <figure>
+                            <img style="width:50%;" src="images/elektronikk_og_arduino/progress_2.jpg">
+                            <figcaption>Steg 2. i oppkobling</figcaption>
+                        </figure>  
+                    </li>
+                    <li>Kobler anode siden på LED-lysene til innganger på Arduinoen med kabler. Kobler det nederste LED-lyset til pin 2, det neste LED-lyset til pin 3 og dette gjentar seg for alle LED-lysene helt opp til det siste LED-lyset som kobles til pin 7.
+                        <figure>
+                            <img style="width:50%;" src="images/elektronikk_og_arduino/progress_3.jpg">
+                            <figcaption>Steg 3. i oppkobling</figcaption>
+                        </figure>   
+                    </li>
+                    <li>Kobler opp tilt-sensoren. Kobler den ene inngangen på sensoren til 5V. Kobler den andre inngangen på sensoren med ground med en motstand på 10KΩ. Den samme inngangen kobler jeg til pin 9 på arduinoen.
+                        <figure>
+                            <img style="width:50%;" src="images/elektronikk_og_arduino/progress_4.jpg">
+                            <figcaption>Steg 4. i oppkobling</figcaption>
+                        </figure>      
+                    </li>
+                    <li>Dette er det siste steget i oppkoblingen. Her setter jeg inn en knapp som skal resette timeglasset. Kobler den ene siden av knappen til 5V. Kobler den andre siden til ground med en motstand på 10KΩ. Kobler den samme siden til pin 8 på arduinoen. 
+                        <figure>
+                            <img style="width:50%;" src="images/elektronikk_og_arduino/progress_5.jpg">
+                            <figcaption>Steg 5. i oppkobling</figcaption>
+                        </figure>   
+                    </li>
+
+                    <p>Nå er all oppkoblingen gjort. Bilde av hele oppkoblingen:</p>
+                    <figure>
+                        <img style="width:50%;" src="images/elektronikk_og_arduino/final.jpg">
+                        <figcaption>Bildet av hele oppkoblingen.</figcaption>
+                    </figure>
+                </ol>
+                <h3>Kode</h3>
+                <hr>
+                <p></p>
+                <h3>Sluttresultat</h3>
+                <hr>
+
+                <div id="bottom-behind-footer"></div>
+            </main>
+        </div>
+        <footer><p>Mathias Mellemstuen (<a href="mailto:mathias.mellemstuen@hiof.no">mathias.mellemstuen@hiof.no</a>)</p></footer>
+    </body>
+</html>

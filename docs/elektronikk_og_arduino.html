@@ -7,8 +7,17 @@
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Baloo+Chettan+2&display=swap" rel="stylesheet"> 
         
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/default.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/vs.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script>
+            window.onload = function () {
+            var allPre, i, j;
+            allPre = document.getElementsByTagName("code");
+                for (i = 0, j = allPre.length; i < j; i++) {
+                    hljs.highlightBlock(allPre[i]);
+                }
+            };
+        </script>
     </head>
     <body>
         <h1>DigiFab</h1>
@@ -119,10 +128,176 @@
                 </ol>
                 <h3>Kode</h3>
                 <hr>
-                <p></p>
+                <p>Jeg fulgte ikke koden i Arduino prosjekt boken. Jeg tenkte det var best å lage min egen kode på grunn av at jeg skulle legge på ekstra funksjonalitet. All koden finnes <a target="_blank" href="https://github.com/mathiasmellemstuen/DigiFab/blob/main/Elektronikk%20og%20Arduino/main.ino">her</a>. </p>
+                <p><b>Gjennomgang av kode:</b></p>
+                <p>Første jeg gjorde var å deklarere variabler som inneholdt hvilken pin de forskjellige delene er koblet til. Her brukte jeg også en array til alle LED-lysene hvor rekkefølgen på arrayet er rekkefølgen LED-lysene står i.</p>
+                <pre><code class="c++">
+const int ledPins[6] = {2,3,4,5,6,7};
+const int buttonPin = 8;
+const int sensorPin = 9; 
+                </code></pre>
+
+                <p>Den neste variablen jeg deklarer er <code class="c++">int currentLed = 0;</code> Denne variabelen holder på indeksen til det LED-lyset som blinker. Her er det snakk om indeksen i <code class="c++">const int ledPins[6]</code> arrayet.</p>
+                <p>Deklarer <code class="c++">bool blink = false;</code>. Denne variabelen er <code class="c++">true</code> når det blinkende LED-lyset skal lyse.</p>
+                <p>Deklarer alle variabelene som brukes i forbindelse med tiden til å beregne når LED-lysene skal på/av. Siden return-verdien til <code class="c++">millis()</code> er av type <code class="c++">unsigned long int</code> så deklareres alle variablene med den typen.</p>
+                <pre><code class="c++">
+unsigned long int startTime; 
+unsigned long int timePerLed = 1000 * 3; // 3 seconds
+unsigned long int blinkTimer;
+unsigned long int blinkTime = 250; // 0.25 second
+unsigned long int waitTime = 0; 
+unsigned long int waitStart = 0; 
+unsigned long int waitStop = 0; 
+                </code></pre>
+                <p><code class="c++">void reset()</code> kalles når man klikker på knappen. Denne resetter tiden og slår av alle LED-lysene.</p>
+                <pre><code class="c++">
+void reset() {
+    startTime = millis(); 
+    currentLed = 0;
+    waitTime = 0; 
+
+    for(int i = 0; i < 6; i++) {
+        digitalWrite(ledPins[i], LOW); 
+    }
+}
+                </code></pre>
+                <p><code class="c++">void setup()</code> kalles når programmet / arduinoen starter. I denne funksjonen så setter jeg pinMode på alle pinsene. Her setter jeg <code class="c++">OUTPUT</code> på alle LED-lysene og <code class="c++">INPUT</code> på knappen og sensoren. Her setter jeg også <code class="c++">startTime = millis();</code>. Jeg er usikker på om dette er en nødvendighet, siden det er mulig at <code class="c++">millis()</code> funksjonen returnerer 0 fordi det ligger i <code class="c++">void startup()</code>.</p>
+                <p><code class="c++">void loop()</code> blir først kalt etter <code class="c++">void setup()</code> og blir deretter kalt om og om igjen helt til noen bryter strømmen til Arduinoen. Går igjennom min <code class="c++">void loop()</code> funksjon steg for steg:</p>
+                <p>Først henter jeg data fra sensoren og knappen.</p>
+                <pre><code class="c++">
+int sensorValue = digitalRead(sensorPin);
+int buttonValue = digitalRead(buttonPin);
+                </code></pre>
+                <p>Kaller <code class="c++">void reset()</code> hvis knappen er trykket på.</p>
+                <pre><code class="c++">
+if(buttonValue) {
+    reset();
+}
+                </code></pre>
+                <p>Sjekker om noen roterer på sensoren med <code class="c++">if(sensorValue){ ... }</code>. Da skjer dette:</p>
+                <pre><code class="c++">
+if(sensorValue) {
+
+    blinkTimer = blinkTimer == 0 ? millis() : blinkTimer; 
+
+    if(blinkTimer + blinkTime < millis()) {
+        blink = !blink;
+        blinkTimer = 0; 
+    }
+
+
+    if(waitStart != 0) {
+        waitTime += waitStop - waitStart; 
+        waitStart = 0;
+    }
+
+    currentLed = (millis() - startTime - waitTime) > timePerLed * (currentLed + 1) ? (currentLed + 1) : currentLed;
+
+    for(int i = 0; i < 6; i++) {
+
+        digitalWrite(ledPins[i], i < currentLed ? HIGH : LOW); 
+        digitalWrite(ledPins[currentLed], blink ? HIGH : LOW); 
+    }
+
+} else {
+    ...
+}
+                </code></pre>
+                <p>Her setter jeg først <code class="c++">blink</code> variabelen til enten <code class="c++">true</code> eller <code class="c++">false</code>:</p>
+                <pre><code class="c++">
+blinkTimer = blinkTimer == 0 ? millis() : blinkTimer;
+
+if(blinkTimer + blinkTime < millis()) {
+    blink = !blink;
+    blinkTimer = 0; 
+}
+                </code></pre>
+                <p>Deretter sjekker om personen har pauset timeglasset med å rotere det andre veien og nå har startet timeglasset igjen med å rotere det tilbake. Hvis det er tilfellet så må man vite hvor lenge timeglasset var pauset: <code class="c++">waitTime += waitStop - waitStart;</code></p>
+                <pre><code class="c++">
+if(waitStart != 0) {
+    waitTime += waitStop - waitStart; 
+    waitStart = 0;
+}
+                </code></pre>
+                <p>Setter verdien til <code class="c++">currentLed</code>:</p>
+                <pre><code class="c++">currentLed = (millis() - startTime - waitTime) > timePerLed * (currentLed + 1) ? (currentLed + 1) : currentLed;</code></pre>
+                <p>Tilslutt så setter jeg verdien til LED-lysene ut fra <code class="c++">currentLed</code> og <code class="c++">blink</code> variabelen. Alle LED-lysene som har indeks under <code class="c++">currentLed</code> skal lyse. Det LED-lyset som er <code class="c++">currentLed</code> skal blinke:</p>
+                <pre><code class="c++">
+for(int i = 0; i < 6; i++) {
+
+    digitalWrite(ledPins[i], i < currentLed ? HIGH : LOW); 
+    digitalWrite(ledPins[currentLed], blink ? HIGH : LOW); 
+}
+                </code></pre>
+                <p>Hvis timeglasset pauses så skjer dette:</p>
+                <pre><code class="c++">
+if(sensorValue) {
+    ...
+}
+ else {
+    waitStart = waitStart == 0 ? millis() : waitStart;
+    waitStop = millis(); 
+
+    digitalWrite(ledPins[currentLed], LOW); 
+}
+                </code></pre>
+                <p>Her setter jeg <code class="c++">waitStart</code> og <code class="c++">waitStop</code> til tiden pausen startet og pausen stoppet. Jeg slår også av LED-lyset som blinker, slik at det tilfeldigvis ikke er på når timeglasset pauses.</p>
+
+                <p>Alt dette gir oss denne <code class="c++">void loop()</code> funksjonen:</p>
+                <pre><code class="c++">
+void loop() {
+
+    int sensorValue = digitalRead(sensorPin);
+    int buttonValue = digitalRead(buttonPin);
+
+    if(buttonValue) {
+        reset();
+    }
+
+    if(sensorValue) {
+
+        blinkTimer = blinkTimer == 0 ? millis() : blinkTimer; 
+
+        if(blinkTimer + blinkTime < millis()) {
+            blink = !blink;
+            blinkTimer = 0; 
+        }
+
+
+        if(waitStart != 0) {
+            waitTime += waitStop - waitStart; 
+            waitStart = 0;
+        }
+
+        currentLed = (millis() - startTime - waitTime) > timePerLed * (currentLed + 1) ? (currentLed + 1) : currentLed;
+
+        for(int i = 0; i < 6; i++) {
+
+            digitalWrite(ledPins[i], i < currentLed ? HIGH : LOW); 
+            digitalWrite(ledPins[currentLed], blink ? HIGH : LOW); 
+        }
+
+    } else {
+        waitStart = waitStart == 0 ? millis() : waitStart;
+        waitStop = millis(); 
+
+        digitalWrite(ledPins[currentLed], LOW); 
+    }
+
+}
+                </code></pre>
                 <h3>Sluttresultat</h3>
                 <hr>
-
+                <p>Jeg ble fornøyd med sluttresultatet. Alt fungerte som forventet.</p>
+                <figure>
+                    <img style="width: 50%;" src="images/elektronikk_og_arduino/final.gif">
+                    <figcaption>Video av det digitale timeglasset.</figcaption>
+                </figure>
+                <p>Jeg prøvde også å kopiere koden min over til <a href="https://www.tinkercad.com">Autodesk Tinkercad</a> og sette opp koblingene. Dette fungerte på første forsøk:</p>
+                <figure>
+                    <img style="width: 50%;" src="images/elektronikk_og_arduino/circuit_simulation.gif">
+                    <figcaption>Video av simulering av det digitale timeglasset.</figcaption>
+                </figure>
                 <div id="bottom-behind-footer"></div>
             </main>
         </div>

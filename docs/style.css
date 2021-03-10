@@ -114,3 +114,8 @@ tr:nth-child(even) {
     width:1px; 
     height:100px; 
 }
+
+p > code.hljs { display: inline; }
+code {
+    background:white !important; 
+}

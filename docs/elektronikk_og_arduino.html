@@ -162,6 +162,19 @@ void reset() {
 }
                 </code></pre>
                 <p><code class="c++">void setup()</code> kalles når programmet / arduinoen starter. I denne funksjonen så setter jeg pinMode på alle pinsene. Her setter jeg <code class="c++">OUTPUT</code> på alle LED-lysene og <code class="c++">INPUT</code> på knappen og sensoren. Her setter jeg også <code class="c++">startTime = millis();</code>. Jeg er usikker på om dette er en nødvendighet, siden det er mulig at <code class="c++">millis()</code> funksjonen returnerer 0 fordi det ligger i <code class="c++">void startup()</code>.</p>
+                <pre><code class="c++">
+void setup() {
+
+    for(int i = 0; i < 6; i++) {
+        pinMode(ledPins[i], OUTPUT);
+    }
+
+    pinMode(sensorPin, INPUT); 
+    pinMode(buttonPin, INPUT); 
+
+    startTime = millis(); 
+}
+                </code></pre>
                 <p><code class="c++">void loop()</code> blir først kalt etter <code class="c++">void setup()</code> og blir deretter kalt om og om igjen helt til noen bryter strømmen til Arduinoen. Går igjennom min <code class="c++">void loop()</code> funksjon steg for steg:</p>
                 <p>Først henter jeg data fra sensoren og knappen.</p>
                 <pre><code class="c++">
